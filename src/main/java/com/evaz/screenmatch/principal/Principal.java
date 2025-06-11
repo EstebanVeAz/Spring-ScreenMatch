@@ -2,18 +2,17 @@ package com.evaz.screenmatch.principal;
 import com.evaz.screenmatch.model.*;
 import com.evaz.screenmatch.service.ConsumoApi;
 import com.evaz.screenmatch.service.ConvierteDatos;
+import io.github.cdimascio.dotenv.Dotenv;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
-
+    private static final Dotenv dotenv = Dotenv.load();
     private Scanner teclado = new Scanner(System.in);
     private ConsumoApi consumoApi = new ConsumoApi();
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "&apikey=88b4ce85";
+    private final String API_KEY = "&apikey=" + dotenv.get("OMDB_API_KEY");
     private final ConvierteDatos conversor = new ConvierteDatos();
     private List<DatosSerie> datosSeries = new ArrayList<>();
 

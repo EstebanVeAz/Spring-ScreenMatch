@@ -1,7 +1,5 @@
 package com.evaz.screenmatch.model;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-
 import java.util.OptionalDouble;
 
 public class Serie{
@@ -11,6 +9,7 @@ private Integer totalTemporadas;
 private Double evaluacion;
 private Categoria genero;
 private String premios;
+private String sinopsis;
 
 public Serie(DatosSerie datosSerie){
     this.titulo = datosSerie.titulo();
@@ -18,6 +17,7 @@ public Serie(DatosSerie datosSerie){
     this.evaluacion = OptionalDouble.of(Double.valueOf(datosSerie.evaluacion())).orElse(0);
     this.genero = Categoria.fromString(datosSerie.genero().split(",")[0].trim());
     this.premios = datosSerie.premios();
+    this.sinopsis = datosSerie.sinopsis();
 
 }
 
@@ -28,6 +28,7 @@ public Serie(DatosSerie datosSerie){
                 ",titulo='" + titulo + '\'' +
                 ", totalTemporadas=" + totalTemporadas +
                 ", evaluacion=" + evaluacion +
+                ", sinopsis= "+ sinopsis +
                 ", premios='" + premios + '\'';
     }
 
